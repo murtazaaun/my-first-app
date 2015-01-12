@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Black Parliament</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+          <a class="navbar-brand" href="#">Black Parliament</a> </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"> <a href="#">New</a> </li>
+            <li> <a href="#">Cancel</a> </li>
+            <li> <a href="#">Customers</a> </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div class="row clearfix"> 
+    <!-- Main Splash -->
+    <section id="splash" class="full-height display-none">
+      <div class="row clearfix">
+        <div class="col-sm-12 column">
+          <div class="logo center-image"><img src="images/logo-bp.jpg" class="img-responsive img-rounded"></div>
+        </div>
+      </div>
+    </section>
+    <!-- //Main Splash --> 
+    <!-- Size Chart -->
+    <section>
+      <div class="col-md-12 column">
+        <div class="row clearfix">
+          <div class="col-sm-6 column hidden-xs printable">
+            <div class="length">in</div>
+            <div class="shoulder">in</div>
+            <div class="waist">in</div>
+            <div class="sleeve">in</div>
+            <img src="images/jacket-vector-illustration-5948116.jpg" class="img-responsive"> </div>
+          <div class="col-sm-6 col-xs-12 column">
+          <button id="btnPrint" class="btn btn-primary">Print</button>
+            <form role="form">
+              <input type="hidden" id="uniqueCode" name="uniqueCode" value="">
+              <div class="form-group">
+                <label for="name">Customer Name</label>
+                <input type="text" class="form-control" id="name" />
+              </div>
+              <div class="form-group">
+                <label for="email">Customer Email</label>
+                <input type="text" class="form-control" id="email" />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Coat Size</label>
+                <select name="size" id="size" class="form-control">
+                  <option>X Small</option>
+                  <option>Small</option>
+                  <option>Medium</option>
+                  <option>Large</option>
+                  <option>X Large</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Length</label>
+                <input type="text" class="form-control" id="length" />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Shoulder</label>
+                <input type="text" class="form-control" id="shoulder" />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputFile">Waist</label>
+                <input type="text" class="form-control" id="waist" />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputFile">Sleeve</label>
+                <input type="text" class="form-control" id="sleeve" />
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- //Size Chart --> 
+  </div>
+</div>
+</body>
+<script>
+$(function(e){
+	var uniqueID = function (length) {
+		return Math.floor(Math.pow(10, length-1) + Math.random() * (Math.pow(10, length) - Math.pow(10, length-1) - 1));
+	}
+	
+	$('#uniqueCode').val(uniqueID(6));
+	$('#length').on('change',function(e) {
+		$('.length').html($(this).val()+' in');
+	});
+	$('#shoulder').on('change',function(e) {
+		$('.shoulder').html($(this).val()+' in');
+	});
+	$('#waist').on('change',function(e) {
+		$('.waist').html($(this).val()+' in');
+	});
+	$('#sleeve').on('change',function(e) {
+		$('.sleeve').html($(this).val()+' in');
+	});
+	
+	$("#btnPrint").on("click", function () {
+		var divContents = $(".printable").html();
+		var printWindow = window.open('', '', 'height=600,width=600');
+		printWindow.document.write('<html><head><title>Size Chart</title>');
+		printWindow.document.write('</head><body >');
+		printWindow.document.write(divContents);
+		printWindow.document.write('</body></html>');
+		printWindow.document.close();
+		printWindow.print();
+	});
+});
+</script>
+</html>
